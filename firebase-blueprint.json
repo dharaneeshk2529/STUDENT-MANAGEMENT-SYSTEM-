@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "Student": {
+      "title": "Student",
+      "description": "A student record in the Student Management System",
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "description": "First name of the student",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the student",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Unique email address of the student",
+          "minLength": 5,
+          "maxLength": 150
+        },
+        "rollNumber": {
+          "type": "string",
+          "description": "Unique roll number or student ID identifier",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "course": {
+          "type": "string",
+          "description": "Course or degree program enrolled in",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "age": {
+          "type": "integer",
+          "description": "Age of the student (positive integer)",
+          "minimum": 1
+        },
+        "enrollmentDate": {
+          "type": "string",
+          "description": "ISO date string when the student enrolled (YYYY-MM-DD)"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName",
+        "email",
+        "rollNumber",
+        "course",
+        "age",
+        "enrollmentDate"
+      ]
+    }
+  },
+  "firestore": {
+    "/students/{studentId}": {
+      "schema": "Student",
+      "description": "Collection of student records managed exclusively via Cloud Functions backend"
+    }
+  }
+}

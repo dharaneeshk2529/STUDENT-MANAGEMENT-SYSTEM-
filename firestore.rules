@@ -1,0 +1,18 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default-deny catch-all for all client requests
+    // All Firestore access in this architecture is managed exclusively
+    // by trusted Firebase Cloud Functions via the Firebase Admin SDK.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    match /students/{studentId} {
+      // Direct client access is strictly disallowed to guarantee that all
+      // validations, uniqueness checks, and sanitization execute in Cloud Functions.
+      allow read, write: if false;
+    }
+  }
+}
